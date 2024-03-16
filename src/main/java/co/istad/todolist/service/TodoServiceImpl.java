@@ -44,13 +44,17 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void updateTask(Todo todo) {
-        todoListDataSource.getTodoList().stream().filter(p->p.getId().equals(todo.getId())).forEach(p->{
-            p.setTask(todo.getTask());
-            p.setDescription(todo.getDescription());
-            p.setIsDone(todo.getIsDone());
-            p.setCreatedAt(todo.getCreatedAt());
-        });
+        todoListDataSource.getTodoList().stream()
+                .filter(p -> p.getId().equals(todo.getId()))
+                .findFirst()
+                .ifPresent(p -> {
+                    p.setTask(todo.getTask());
+                    p.setDescription(todo.getDescription());
+                    p.setIsDone(todo.getIsDone());
+                    p.setCreatedAt(todo.getCreatedAt());
+                });
     }
+
 
     @Override
     public void deleteTask(Integer id) {

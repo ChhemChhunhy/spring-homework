@@ -9,27 +9,28 @@
 
 <div class="w-25 border p-4 mx-auto rounded-4">
     <form th:action="@{/todo/edit}" method="post" th:object="${todo}">
+        <input type="hidden" th:field="*{id}" /> <!-- Hidden input for task ID -->
         <div class="mb-3">
             <label for="exampleInputTask" class="form-label">Task Title</label>
-            <input type="text" class="form-control" id="exampleInputTask" th:field="*{task}">
-            <div id="taskHelp" class="form-text"></div>
+            <input type="text" class="form-control" id="exampleInputTask" th:field="*{task}" />
         </div>
         <div class="mb-3">
             <label for="exampleInputDescription" class="form-label">Description</label>
-            <input type="text" class="form-control" id="exampleInputDescription" th:field="*{description}">
+            <input type="text" class="form-control" id="exampleInputDescription" th:field="*{description}" />
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" th:field="*{isDone}">
-            <label class="form-check-label" for="exampleCheck1">IsDone</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" th:field="*{isDone}" />
+            <label class="form-check-label" for="exampleCheck1">
+                <span th:text="${todo.isDone} ? 'Yes' : 'No'"></span>
+            </label>
         </div>
-        <div class="mb-3 ">
+        <div class="mb-3">
             <label for="createdAt">Created At:</label><br>
-            <input type="date" id="createdAt" th:field="*{createdAt}"/><br>
+            <input type="date" id="createdAt" th:field="*{createdAt}" /><br>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-
-        <a href="/todo">Back to Todo List</a>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
+
 </div>
 </body>
 </html>
